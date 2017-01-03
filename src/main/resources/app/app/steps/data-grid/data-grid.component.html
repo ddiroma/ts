@@ -1,0 +1,61 @@
+<div class="form-group">
+  <label>Step Name</label>
+  <input [(ngModel)]="step.model.name" class="form-control" />
+</div>
+
+<div class="panel panel-default" *ngIf="step.model.fields.length">
+  <div class="panel-heading">Fields</div>
+  <div class="panel-body">
+    <div style="overflow:scroll">
+      <table>
+        <tr>
+          <td>Name</td>
+          <td>Type</td>
+          <td>Format</td>
+          <td>Currency</td>
+          <td>Decimal</td>
+          <td>Group</td>
+          <td>Length</td>
+          <td>Precision</td>
+          <td>Empty String?</td>
+        </tr>
+        <tr *ngFor="let field of step.model.fields">
+          <td><input [(ngModel)]="field.name"/></td>
+          <td><input [(ngModel)]="field.type"/></td>
+          <td><input [(ngModel)]="field.format"/></td>
+          <td><input [(ngModel)]="field.currency"/></td>
+          <td><input [(ngModel)]="field.decimal"/></td>
+          <td><input [(ngModel)]="field.group"/></td>
+          <td><input [(ngModel)]="field.length"/></td>
+          <td><input [(ngModel)]="field.precision"/></td>
+          <td><input type="checkbox" [(ngModel)]="field.setEmptyString"/></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default" *ngIf="step.model.data.lines.length">
+  <div class="panel-heading">Fields</div>
+  <div class="panel-body">
+    <div style="overflow:scroll">
+      <table>
+        <tr>
+          <td *ngFor="let field of step.model.fields">{{field.name}}</td>
+        </tr>
+        <tr *ngFor="let line of step.model.data.lines">
+          <td *ngFor="let item of line.items"><input [(ngModel)]="item.value"/></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <button class="btn btn-default" (click)="addField()">Add Field</button>
+    <button class="btn btn-default" (click)="addData()">Add Data</button>
+  </div>
+  <div class="col-md-6" style="text-align:right">
+    <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+    <button class="btn btn-primary" (click)="add()">Add</button>
+  </div>
+</div>

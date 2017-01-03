@@ -1,0 +1,5 @@
+<div *ngFor="let step of steps" class="step" [style.background-color]="step.color" (click)="select(step)">
+  <img src="{{step.icon}}"/>
+  <div class="label">{{step.label}}</div>
+  <div style="clear:both"></div>
+</div>

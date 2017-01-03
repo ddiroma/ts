@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs" default-timeout="20000">
+
+  <!--  HttpService Whiteboard registration of web assets -->
+  <service interface="org.ops4j.pax.web.extender.whiteboard.ResourceMapping">
+    <bean class="org.ops4j.pax.web.extender.whiteboard.runtime.DefaultResourceMapping">
+      <!-- http path -->
+      <property name="alias" value="/${project.artifactId}/${project.version}"/>
+      <!--Local Folder -->
+      <property name="path" value="/app"/>
+    </bean>
+  </service>
+
+  <jaxrs:server address="/spoon" id="spoon-endpoint">
+    <jaxrs:serviceBeans>
+      <bean class="org.pentaho.di.spoon.endpoints.SpoonEndpoint"/>
+    </jaxrs:serviceBeans>
+
+    <jaxrs:extensionMappings>
+      <entry key="json" value="application/json"/>
+    </jaxrs:extensionMappings>
+
+    <jaxrs:providers>
+      <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+    </jaxrs:providers>
+
+  </jaxrs:server>
+
+
+</blueprint>

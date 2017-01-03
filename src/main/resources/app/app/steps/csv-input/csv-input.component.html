@@ -1,0 +1,90 @@
+<div class="form-group">
+  <label>Step Name</label>
+  <input [(ngModel)]="step.model.name" class="form-control" />
+</div>
+<div class="form-group">
+  <label>Filename</label>
+  <input [(ngModel)]="step.model.filename" class="form-control" />
+</div>
+<div class="form-group">
+  <label>Delimiter</label>
+  <input [(ngModel)]="step.model.seperator" class="form-control" />
+</div>
+<div class="form-group">
+  <label>Enclosure</label>
+  <input [(ngModel)]="step.model.enclosure" class="form-control" />
+</div>
+<div class="form-group">
+  <label>NIO buffer size</label>
+  <input [(ngModel)]="step.model.bufferSize" class="form-control" />
+</div>
+<div class="form-group">
+  <label>Lazy Conversion?</label>
+  <input [(ngModel)]="step.model.lazyConversion" type="checkbox" />
+</div>
+<div class="form-group">
+  <label>Header row present?</label>
+  <input [(ngModel)]="step.model.header" type="checkbox" />
+</div>
+<div class="form-group">
+  <label>Add filename to result</label>
+  <input [(ngModel)]="step.model.addFilenameResult" type="checkbox" />
+</div>
+<div class="form-group">
+  <label>The row number file name (optional)</label>
+  <input [(ngModel)]="step.model.rownumField" class="form-control" />
+</div>
+<div class="form-group">
+  <label>Running in parallel?</label>
+  <input [(ngModel)]="step.model.parallel" type="checkbox" />
+</div>
+<div class="form-group">
+  <label>New line possible in fields?</label>
+  <input [(ngModel)]="step.model.newlinePossible" type="checkbox" />
+</div>
+<div class="form-group">
+  <label>File encoding</label>
+  <select [(ngModel)]="step.model.encoding" class="form-control">
+    <option *ngFor="let encoding of encodings" [value]="encoding">{{encoding}}</option>
+  </select>
+</div>
+<div class="panel panel-default" *ngIf="step.model.fields.length">
+  <div class="panel-heading">Fields</div>
+  <div class="panel-body">
+    <div style="overflow:scroll">
+      <table>
+        <tr>
+          <td>Name</td>
+          <td>Type</td>
+          <td>Format</td>
+          <td>Currency</td>
+          <td>Decimal</td>
+          <td>Group</td>
+          <td>Length</td>
+          <td>Precision</td>
+          <td>Trim Type</td>
+        </tr>
+        <tr *ngFor="let field of step.model.fields">
+          <td><input [(ngModel)]="field.name"/></td>
+          <td><input [(ngModel)]="field.type"/></td>
+          <td><input [(ngModel)]="field.format"/></td>
+          <td><input [(ngModel)]="field.currency"/></td>
+          <td><input [(ngModel)]="field.decimal"/></td>
+          <td><input [(ngModel)]="field.group"/></td>
+          <td><input [(ngModel)]="field.length"/></td>
+          <td><input [(ngModel)]="field.precision"/></td>
+          <td><input [(ngModel)]="field.trimType"/></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <button class="btn btn-default" (click)="addField()">Add Field</button>
+  </div>
+  <div class="col-md-6" style="text-align:right">
+    <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+    <button class="btn btn-primary" (click)="add()">Add</button>
+  </div>
+</div>
