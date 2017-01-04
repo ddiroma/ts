@@ -1,15 +1,18 @@
-<div class="container-fluid">
-  <div class="panel panel-default m-a w-250 p-25">
+<div class="login-bg">
+  <div class="login">
+    <div class="login-logo-container">
+      <img src="../images/pentaho-logo.png">
+    </div>
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="usernameImput">Username</label>
-        <input type="text" class="form-control" id="usernameInput" placeholder="Username" #username>
+        <label class="c-w" for="usernameImput">User Name:</label>
+        <input type="text" class="login-entry" id="usernameInput" placeholder="Username" #username>
       </div>
       <div class="form-group">
-        <label for="passwordInput">Password</label>
-        <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+        <label class="c-w" for="passwordInput">Password:</label>
+        <input type="password" class="login-entry" id="passwordInput" placeholder="Password">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="login-btn">Login</button>
     </form>
   </div>
 </div>
