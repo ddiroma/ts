@@ -15,15 +15,17 @@ var csv_input_step_1 = require('./csv-input/csv-input.step');
 var category_model_1 = require("./category.model");
 var StepPanelComponent = (function () {
     function StepPanelComponent() {
+        this.onSelect = new core_1.EventEmitter();
         this.categoriesList = [];
         this.stepsList = [];
         this.steps = [];
-        this.onSelect = new core_1.EventEmitter();
         var input = new category_model_1.Category("Input");
         var flow = new category_model_1.Category("Flow");
-        dummyStep: dummy_step_1.DummyStep = new dummy_step_1.DummyStep(flow, null);
-        dataGridStep: data_grid_step_1.DataGridStep = new data_grid_step_1.DataGridStep(input, null);
-        csvInputStep: csv_input_step_1.CsvInputStep = new csv_input_step_1.CsvInputStep(input, null);
+        this.dummyStep = new dummy_step_1.DummyStep(flow, null);
+        this.dataGridStep = new data_grid_step_1.DataGridStep(input, null);
+        this.csvInputStep = new csv_input_step_1.CsvInputStep(input, null);
+        this.categoriesList.push(input);
+        this.categoriesList.push();
         this.stepsList.push(this.csvInputStep);
         this.stepsList.push(this.dataGridStep);
         this.stepsList.push(this.dummyStep);

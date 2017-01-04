@@ -12,18 +12,26 @@ import {Category} from "./category.model";
 })
 export class StepPanelComponent {
 
+  @Output() onSelect = new EventEmitter<Step>();
+
   categoriesList: Array<Category> = [];
   stepsList: Array<Step> = [];
   steps: Array<Step> = [];
-  @Output() onSelect = new EventEmitter<Step>();
+
+  dummyStep: DummyStep;
+  dataGridStep: DataGridStep;
+  csvInputStep: CsvInputStep;
 
   constructor() {
     let input: Category = new Category("Input");
     let flow: Category = new Category("Flow");
 
-    dummyStep: DummyStep = new DummyStep(flow, null);
-    dataGridStep: DataGridStep = new DataGridStep(input, null);
-    csvInputStep: CsvInputStep = new CsvInputStep(input, null);
+    this.dummyStep = new DummyStep(flow, null);
+    this.dataGridStep = new DataGridStep(input, null);
+    this.csvInputStep = new CsvInputStep(input, null);
+
+    this.categoriesList.push(input);
+    this.categoriesList.push()
 
     this.stepsList.push( this.csvInputStep );
     this.stepsList.push( this.dataGridStep );
