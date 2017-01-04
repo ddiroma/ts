@@ -9,30 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var LoginComponent = (function () {
-    function LoginComponent(router, renderer) {
+var router_1 = require("@angular/router");
+var NameComponent = (function () {
+    function NameComponent(router, renderer) {
         this.router = router;
         this.renderer = renderer;
     }
-    LoginComponent.prototype.ngAfterViewInit = function () {
+    NameComponent.prototype.ngAfterViewInit = function () {
         this.renderer.invokeElementMethod(this.input.nativeElement, 'focus');
     };
-    LoginComponent.prototype.onSubmit = function () {
-        this.router.navigate(['/choose']);
+    NameComponent.prototype.onSubmit = function () {
+        this.router.navigate(['/canvas']);
     };
     __decorate([
-        core_1.ViewChild('username'), 
+        core_1.ViewChild('name'), 
         __metadata('design:type', core_1.ElementRef)
-    ], LoginComponent.prototype, "input", void 0);
-    LoginComponent = __decorate([
+    ], NameComponent.prototype, "input", void 0);
+    NameComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            templateUrl: '/templates/login.component.html'
+            templateUrl: '/templates/name.component.html'
         }), 
         __metadata('design:paramtypes', [router_1.Router, core_1.Renderer])
-    ], LoginComponent);
-    return LoginComponent;
+    ], NameComponent);
+    return NameComponent;
 }());
-exports.LoginComponent = LoginComponent;
-//# sourceMappingURL=login.component.js.map
+exports.NameComponent = NameComponent;
+//# sourceMappingURL=name.component.js.map

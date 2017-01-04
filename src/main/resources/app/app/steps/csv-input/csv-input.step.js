@@ -8,14 +8,14 @@ var step_1 = require('../step/step');
 var csv_input_model_1 = require('./csv-input.model');
 var CsvInputStep = (function (_super) {
     __extends(CsvInputStep, _super);
-    function CsvInputStep(csvInputModel) {
-        _super.call(this, csvInputModel);
+    function CsvInputStep(category, csvInputModel) {
+        _super.call(this, category, csvInputModel);
         this.icon = "/app/steps/csv-input/assets/CSV.svg";
         this.label = "CSV file input";
         this.color = "#337AB7";
     }
     CsvInputStep.prototype.get = function () {
-        return new CsvInputStep(new csv_input_model_1.CsvInputModel());
+        return new CsvInputStep(this.category, new csv_input_model_1.CsvInputModel());
     };
     return CsvInputStep;
 }(step_1.Step));

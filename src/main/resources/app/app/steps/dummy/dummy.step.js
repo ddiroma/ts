@@ -8,14 +8,15 @@ var step_1 = require('../step/step');
 var dummy_model_1 = require('./dummy.model');
 var DummyStep = (function (_super) {
     __extends(DummyStep, _super);
-    function DummyStep(dummyModel) {
-        _super.call(this, dummyModel);
+    function DummyStep(category, dummyModel) {
+        _super.call(this, category, dummyModel);
         this.icon = "/app/steps/dummy/assets/DUM.svg";
+        this.url = "/dummy";
         this.label = "Dummy Step";
         this.color = "#337AB7";
     }
     DummyStep.prototype.get = function () {
-        return new DummyStep(new dummy_model_1.DummyModel());
+        return new DummyStep(this.category, new dummy_model_1.DummyModel());
     };
     return DummyStep;
 }(step_1.Step));

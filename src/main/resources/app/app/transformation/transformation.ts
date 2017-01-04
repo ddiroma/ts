@@ -40,6 +40,7 @@ export class Transformation {
   }
 
   populateModel() {
+    this.model.steps = [];
     for (let step of this.steps) {
       this.model.steps.push(step.model);
     }

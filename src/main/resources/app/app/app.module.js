@@ -17,9 +17,14 @@ var app_component_1 = require('./app.component');
 var steps_module_1 = require('./steps/steps.module');
 var login_component_1 = require('./login.component');
 var canvas_component_1 = require('./canvas.component');
+var choose_component_1 = require('./choose.component');
+var name_component_1 = require('./name.component');
 var appRoutes = [
     { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'canvas', component: canvas_component_1.CanvasComponent }
+    { path: 'canvas', component: canvas_component_1.CanvasComponent },
+    { path: 'choose', component: choose_component_1.ChooseComponent },
+    { path: 'name', component: name_component_1.NameComponent },
+    { path: '', redirectTo: '/canvas', pathMatch: 'full' },
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -27,7 +32,7 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, steps_module_1.StepsModule, router_1.RouterModule.forRoot(appRoutes)],
-            declarations: [app_component_1.AppComponent, login_component_1.LoginComponent, canvas_component_1.CanvasComponent],
+            declarations: [app_component_1.AppComponent, login_component_1.LoginComponent, choose_component_1.ChooseComponent, name_component_1.NameComponent, canvas_component_1.CanvasComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

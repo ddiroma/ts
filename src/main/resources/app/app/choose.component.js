@@ -9,18 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var ChooseComponent = (function () {
+    function ChooseComponent() {
     }
-    AppComponent = __decorate([
+    ChooseComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'spoon',
-            templateUrl: 'app.component.html'
+            templateUrl: '/templates/choose.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], ChooseComponent);
+    return ChooseComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.ChooseComponent = ChooseComponent;
+//# sourceMappingURL=choose.component.js.map

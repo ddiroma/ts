@@ -7,11 +7,6 @@ body {
 .step {
   cursor: pointer;
   padding: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-}
-
-.step>img {
   float: left;
 }
 
@@ -46,14 +41,46 @@ body {
   line-height: 40px;
 }
 
+.m-0 {
+  margin: 0;
+}
+
+.bc-w {
+  background-color: #ffffff;
+}
+
 .m-a {
   margin: auto;
 }
 
+.w-100p {
+  width: 100%;
+}
+
 .w-250 {
-  width: 250px;
+  width: 250px !important;
+}
+
+.p-0 {
+  padding: 0;
 }
 
 .p-25 {
   padding: 25px
+}
+
+.pos-a {
+  position: absolute;
+}
+
+.b-0 {
+  bottom: 0;
+}
+
+.t-0 {
+  top: 0px;
+}
+
+.l-0 {
+  left: 0px;
 }

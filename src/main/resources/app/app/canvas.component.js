@@ -12,11 +12,13 @@ var core_1 = require('@angular/core');
 var transformation_1 = require('./transformation/transformation');
 var xml_executor_1 = require('./writer/xml-executor');
 var transformation_service_1 = require('./transformation/transformation.service');
+var data_service_1 = require("./data.service");
 var CanvasComponent = (function () {
-    function CanvasComponent(transformationService) {
+    function CanvasComponent(transformationService, dataService) {
         this.transformationService = transformationService;
-        this.currentStep = null;
+        this.dataService = dataService;
         this.result = new transformation_service_1.Result();
+        this.currentStep = null;
         this.transformation = new transformation_1.Transformation();
         this.transformation.model.info.name = "My Transformation";
         this.transformation.path = '/home/bmorrise/Documents/test.ktr';
@@ -26,6 +28,7 @@ var CanvasComponent = (function () {
         this.transformation.editing = true;
     };
     CanvasComponent.prototype.edit = function (step) {
+        this.dataService.currentStep = step;
         this.currentStep = step;
         this.transformation.editing = true;
     };
@@ -38,9 +41,11 @@ var CanvasComponent = (function () {
     CanvasComponent.prototype.generate = function () {
         var xmlExecutor = new xml_executor_1.XmlExecutor();
         this.transformation.populateModel();
+        console.log(this.transformation.steps);
         var text = xmlExecutor.execute(this.transformation.model);
-        this.transformationService.save(this.transformation.path, text).then(function (result) { return console.log(result); });
-        this.transformation.dirty = false;
+        console.log(text);
+        // this.transformationService.save(this.transformation.path, text).then(result => console.log(result));
+        // this.transformation.dirty = false;
     };
     CanvasComponent.prototype.run = function () {
         var _this = this;
@@ -51,9 +56,9 @@ var CanvasComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             templateUrl: '/templates/canvas.component.html',
-            providers: [transformation_service_1.TransformationService]
+            providers: [transformation_service_1.TransformationService, data_service_1.DataService]
         }), 
-        __metadata('design:paramtypes', [transformation_service_1.TransformationService])
+        __metadata('design:paramtypes', [transformation_service_1.TransformationService, data_service_1.DataService])
     ], CanvasComponent);
     return CanvasComponent;
 }());

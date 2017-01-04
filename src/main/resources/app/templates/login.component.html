@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="panel panel-default m-a w-250 p-25">
-    <form>
+    <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="usernameImput">Username</label>
-        <input type="email" class="form-control" id="usernameInput" placeholder="Username">
+        <input type="text" class="form-control" id="usernameInput" placeholder="Username" #username>
       </div>
       <div class="form-group">
         <label for="passwordInput">Password</label>

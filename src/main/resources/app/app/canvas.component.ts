@@ -3,20 +3,20 @@ import { Transformation } from './transformation/transformation';
 import { Step } from './steps/step/step';
 import { XmlExecutor } from './writer/xml-executor';
 import { TransformationService, Result } from './transformation/transformation.service';
+import {DataService} from "./data.service";
 
 @Component({
     moduleId: module.id,
     templateUrl: '/templates/canvas.component.html',
-    providers: [TransformationService]
+    providers: [TransformationService, DataService]
 })
 export class CanvasComponent {
 
-    currentStep: Step = null;
     result: Result = new Result();
-
+    currentStep: Step = null;
     transformation: Transformation = new Transformation();
 
-    constructor(private transformationService: TransformationService) {
+    constructor(private transformationService: TransformationService, private dataService: DataService) {
         this.transformation.model.info.name = "My Transformation";
         this.transformation.path = '/home/bmorrise/Documents/test.ktr';
     }
@@ -27,6 +27,7 @@ export class CanvasComponent {
     }
 
     edit(step: Step) {
+        this.dataService.currentStep = step;
         this.currentStep = step;
         this.transformation.editing = true;
     }
@@ -41,10 +42,11 @@ export class CanvasComponent {
     generate() {
         let xmlExecutor: XmlExecutor = new XmlExecutor();
         this.transformation.populateModel();
-
+        console.log(this.transformation.steps);
         let text: String = xmlExecutor.execute(this.transformation.model);
-        this.transformationService.save(this.transformation.path, text).then(result => console.log(result));
-        this.transformation.dirty = false;
+        console.log(text);
+        // this.transformationService.save(this.transformation.path, text).then(result => console.log(result));
+        // this.transformation.dirty = false;
     }
 
     run() {

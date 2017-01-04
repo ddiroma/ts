@@ -1,3 +1,6 @@
+<div class="p-25">
+  <input (keyup)="search($event)" class="w-250 form-control" placeholder="Search"/>
+</div>
 <div *ngFor="let step of steps" class="step" [style.background-color]="step.color" (click)="select(step)">
   <img src="{{step.icon}}"/>
   <div class="label">{{step.label}}</div>

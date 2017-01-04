@@ -35,6 +35,7 @@ var Transformation = (function () {
         }
     };
     Transformation.prototype.populateModel = function () {
+        this.model.steps = [];
         for (var _i = 0, _a = this.steps; _i < _a.length; _i++) {
             var step = _a[_i];
             this.model.steps.push(step.model);
