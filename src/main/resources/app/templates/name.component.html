@@ -1,9 +1,22 @@
-<div class="container">
-<h3>Transformation Name</h3>
+<div>
+  <div class="header">
+    <img class="splash" src="../images/splash.png" /> <img class="welcome-ben"
+      src="../images/welcome-ben.png" />
+  </div>
+  <div class="name-trans-close">
+    <img src="../images/ex.png" />
+  </div>
+  
+  <div class="name-trans">What is the name of your transformation?</div>
+  
   <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <input class="form-control" #name/>
+    <div class="name-trans-entry">
+      <div class="name-trans-input-div">
+        <input type="text" class="name-trans-input" #name />
+      </div>
+      <div>
+        <button class="name-trans-btn">Get Started</button>
+      </div>
     </div>
-    <button class="btn btn-primary">Start</button>
   </form>
 </div>
