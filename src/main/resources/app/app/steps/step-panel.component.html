@@ -1,13 +1,37 @@
 <div id="search-panel" class="pos-a b-0 w-100p">
-  <div class="pos-a" style="top:-45px;left:10px">
-    <input (keyup)="search($event)" class="w-250 form-control" placeholder="Search"/>
+  <div class="pos-a d-ib" style="top:-45px;left:40px">
+    <input (keyup)="search($event)" class="form-control main-search" placeholder="Search"/>
   </div>
-  <div class="ws-nw o-h">
-    <div *ngFor="let category of categories" (click)="selectCategory(category)" class="p-25 bc-g d-ib">
-      {{category.name}}
+  <div class="ws-nw c-w thecategories ofx-a">
+    <div *ngFor="let category of categories" class="d-ib c-p" (click)="selectCategory(category)">
+    <div class="category-top"
+      [ngClass]="{'input-top':category.name==='Input',
+                  'output-top':category.name==='Output',
+                  'transform-top':category.name==='Transform',
+                  'utility-top':category.name==='Utility',
+                  'flow-top':category.name==='Flow',
+                  'scripting-top':category.name==='Scripting',
+                  'server-top':category.name==='Server',
+                  'lookup-top':category.name==='Lookup',
+                  'joins-top':category.name==='Joins',
+                  'data-top':category.name==='Data'}">
+      </div>
+      <div class="category-bottom"
+        [ngClass]="{'input-bottom':category.name==='Input',
+                    'output-bottom':category.name==='Output',
+                    'transform-bottom':category.name==='Transform',
+                    'utility-bottom':category.name==='Utility',
+                    'flow-bottom':category.name==='Flow',
+                    'scripting-bottom':category.name==='Scripting',
+                    'server-bottom':category.name==='Server',
+                    'lookup-bottom':category.name==='Lookup',
+                    'joins-bottom':category.name==='Joins',
+                    'data-bottom':category.name==='Data'}">
+         <div class="cat-name">{{category.name}}</div>
+      </div>
       <div style="clear:both"></div>
     </div>
-    <div *ngFor="let step of steps" class="p-25 c-w d-ib" [style.background-color]="step.color" (click)="selectStep(step)">
+   <div *ngFor="let step of steps" class="p-25 c-w d-ib" [style.background-color]="step.color" (click)="selectStep(step)">
       {{step.label}}
       <div style="clear:both"></div>
     </div>
