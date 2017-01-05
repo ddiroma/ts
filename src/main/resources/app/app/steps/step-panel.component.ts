@@ -30,14 +30,14 @@ export class StepPanelComponent {
   constructor() {
     let input: Category = new Category("Input");
     let output: Category = new Category("Output");
-    let transform: Category = new Category("Transformation");
+    let transform: Category = new Category("Transform");
     let utility: Category = new Category("Utility");
     let flow: Category = new Category("Flow");
     let scripting: Category = new Category("Scripting");
-    let pentahoServer: Category = new Category("Pentaho Server");
+    let pentahoServer: Category = new Category("Server");
     let lookup: Category = new Category("Lookup");
     let joins: Category = new Category("Joins");
-    let dataWarehouse: Category = new Category("Data Warehouse");
+    let dataWarehouse: Category = new Category("Data");
     let validation: Category = new Category("Validation");
     let statistics: Category = new Category("Statistics");
     let dataMining: Category = new Category("Data Mining");
@@ -64,21 +64,6 @@ export class StepPanelComponent {
     this.categoriesList.push(lookup);
     this.categoriesList.push(joins);
     this.categoriesList.push(dataWarehouse);
-    this.categoriesList.push(validation);
-    this.categoriesList.push(statistics);
-    this.categoriesList.push(dataMining);
-    this.categoriesList.push(bigData);
-    this.categoriesList.push(agile);
-    this.categoriesList.push(cryptography);
-    this.categoriesList.push(palo);
-    this.categoriesList.push(openErp);
-    this.categoriesList.push(job);
-    this.categoriesList.push(mapping);
-    this.categoriesList.push(bulkLoading);
-    this.categoriesList.push(inline);
-    this.categoriesList.push(experimental);
-    this.categoriesList.push(deprecated);
-    this.categoriesList.push(history);
 
     this.dummyStep = new DummyStep(flow, null);
     this.dataGridStep = new DataGridStep(input, null);

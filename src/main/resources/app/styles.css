@@ -97,6 +97,10 @@ body {
   width: 100%;
 }
 
+.c-p {
+  cursor: pointer;
+}
+
 .m-0 {
   margin: 0;
 }
@@ -183,6 +187,10 @@ body {
 
 .fs-20 {
   font-size: 20px;
+}
+
+.ofx-a {
+  overflow-x: auto;
 }
 
 .header {
@@ -291,6 +299,153 @@ body {
   margin-top: 15px;
   border: none;
   outline: none;
+}
+
+.main-header {
+  width: 100%;
+  padding: 20px 40px;
+}
+
+.main-trans-name {
+  float: left;
+  font-size: 28px;
+  color: #005DA6;
+}
+
+.main-options {
+  float: right;
+}
+
+.main-middle-options {
+  margin-top: 3px;
+  margin-left: 4px;
+}
+
+input.main-search {
+  padding: 6px 12px 6px 35px;
+  width: 300px;
+  background-image: url('../images/search.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 30px 30px;
+}
+
+.thecategories {
+  padding: 15px 15px 25px 25px;
+}
+
+.category-top {
+  width: 126px;
+  height: 105px;
+  border: none;
+  outline: none;
+  margin-left: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.category-bottom {
+  width: 126px;
+  height: 35px;
+  border: none;
+  outline: none;
+  margin-left: 15px;
+}
+
+.cat-name {
+  text-align: center;
+  padding-top: 5px;
+  font-size: 18px;
+}
+
+.input-top {
+  background-color: #00BCF1;
+  background-image: url('../images/input.png');
+}
+
+.output-top {
+  background-color: #00639B;
+  background-image: url('../images/output.png');
+}
+
+.transform-top {
+  background-color: #B776C2;
+  background-image: url('../images/transform.png');
+}
+
+.utility-top {
+  background-color: #FBAD00;
+  background-image: url('../images/utility.png');
+}
+
+.flow-top {
+  background-color: #30B7B7;
+  background-image: url('../images/flow.png');
+}
+
+.scripting-top {
+  background-color: #FB0047;
+  background-image: url('../images/scripting.png');
+}
+
+.server-top {
+  background-color: #006961;
+  background-image: url('../images/server.png');
+}
+
+.lookup-top {
+  background-color: #6F270B;
+  background-image: url('../images/lookup.png');
+}
+
+.joins-top {
+  background-color: #59805A;
+  background-image: url('../images/joins.png');
+}
+
+.data-top {
+  background-color: #DD4309;
+  background-image: url('../images/data.png');
+}
+
+.input-bottom {
+  background-color: #0096BD;
+}
+
+.output-bottom {
+  background-color: #004C75;
+}
+
+.transform-bottom {
+  background-color: #87439D;
+}
+
+.utility-bottom {
+  background-color: #DA9200;
+}
+
+.flow-bottom {
+  background-color: #009A9A;
+}
+
+.scripting-bottom {
+  background-color: #BA0035;
+}
+
+.server-bottom {
+  background-color: #004B47;
+}
+
+.lookup-bottom {
+  background-color: #441F09;
+}
+
+.joins-bottom {
+  background-color: #476448;
+}
+
+.data-bottom {
+  background-color: #B7370C;
 }
 
 .splash {
