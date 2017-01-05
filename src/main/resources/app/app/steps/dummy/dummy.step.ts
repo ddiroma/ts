@@ -13,6 +13,6 @@ export class DummyStep extends Step {
   }
 
   get(): DummyStep {
-    return new DummyStep(this.category, new DummyModel());
+    return new DummyStep(new Category(""), new DummyModel());
   }
 }

@@ -6,21 +6,22 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {StepsModule} from './steps/steps.module';
 import {LoginComponent} from './login.component';
-import {CanvasComponent} from './canvas.component';
+import {MainComponent} from './main.component';
 import {ChooseComponent} from './choose.component';
 import {NameComponent} from './name.component';
+import {CanvasComponent} from "./canvas.component";
 
 const appRoutes: Routes = [
     {path: 'login', component: LoginComponent},
-    {path: 'canvas', component: CanvasComponent},
+    {path: 'main', component: MainComponent},
     {path: 'choose', component: ChooseComponent},
     {path: 'name', component: NameComponent},
-    {path: '', redirectTo: '/canvas', pathMatch: 'full'},
+    {path: '', redirectTo: '/main', pathMatch: 'full'},
 ];
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpModule, StepsModule, RouterModule.forRoot(appRoutes)],
-    declarations: [AppComponent, LoginComponent, ChooseComponent, NameComponent, CanvasComponent],
+    declarations: [AppComponent, LoginComponent, ChooseComponent, NameComponent, MainComponent, CanvasComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,35 +1,49 @@
-import { Component } from '@angular/core'
-import { Transformation } from './transformation/transformation';
-import { Step } from './steps/step/step';
-import { XmlExecutor } from './writer/xml-executor';
-import { TransformationService, Result } from './transformation/transformation.service';
-import {DataService} from "./data.service";
+import {Input, Component, AfterViewInit, ViewChild, ElementRef, EventEmitter, Output} from "@angular/core";
+import {Transformation} from "./transformation/transformation";
+import {Step} from "./steps/step/step";
 
 @Component({
     moduleId: module.id,
-    templateUrl: '/templates/canvas.component.html',
-    providers: [TransformationService, DataService]
+    selector: 'step-canvas',
+    templateUrl: '/templates/canvas.component.html'
 })
-export class CanvasComponent {
+export class CanvasComponent implements AfterViewInit {
+    @Input("transformation") transformation: Transformation;
+    @Input("currentStep") currentStep: Step;
+    @Output() onEdit = new EventEmitter<Step>();
 
-    result: Result = new Result();
-    currentStep: Step = null;
-    transformation: Transformation = new Transformation();
+    @ViewChild('canvas') canvasRef: ElementRef;
+    private canvas: any;
+    private ctx: any;
 
-    constructor(private transformationService: TransformationService, private dataService: DataService) {
-        this.transformation.model.info.name = "My Transformation";
-        this.transformation.path = '/home/bmorrise/Documents/test.ktr';
+    ngAfterViewInit() {
+        this.canvas = this.canvasRef.nativeElement;
+        this.ctx = this.canvas.getContext("2d");
     }
 
-    onSelect(step: Step) {
-        this.currentStep = step.get();
-        this.transformation.editing = true;
+    update() {
+        const c = this.ctx;
+        c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        for (var i = 1; i < this.transformation.steps.length; i++) {
+            let prevStep = this.transformation.steps[i-1];
+            let currStep = this.transformation.steps[i];
+            c.beginPath();
+            c.moveTo(prevStep.x+130, prevStep.y+22);
+            c.lineTo(currStep.x, currStep.y+22);
+            c.stroke();
+            c.beginPath();
+            c.moveTo(currStep.x, currStep.y+22);
+            c.lineTo(currStep.x-10, currStep.y+17);
+            c.lineTo(currStep.x-10, currStep.y+27);
+            c.lineTo(currStep.x, currStep.y+22);
+            c.fill();
+        }
     }
 
     edit(step: Step) {
-        this.dataService.currentStep = step;
         this.currentStep = step;
         this.transformation.editing = true;
+        this.onEdit.emit(step);
     }
 
     delete(step: Step) {
@@ -37,21 +51,7 @@ export class CanvasComponent {
             this.transformation.editing = false;
         }
         this.transformation.removeStep(step);
+        this.transformation.x-=250;
+        this.update();
     }
-
-    generate() {
-        let xmlExecutor: XmlExecutor = new XmlExecutor();
-        this.transformation.populateModel();
-        console.log(this.transformation.steps);
-        let text: String = xmlExecutor.execute(this.transformation.model);
-        console.log(text);
-        // this.transformationService.save(this.transformation.path, text).then(result => console.log(result));
-        // this.transformation.dirty = false;
-    }
-
-    run() {
-        let stepName: String = this.transformation.steps[this.transformation.steps.length-1].model.name;
-        this.transformationService.run(this.transformation.path, stepName).then(result => this.result = result);
-    }
-
 }

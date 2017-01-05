@@ -41,54 +41,6 @@ body {
   line-height: 40px;
 }
 
-.m-0 {
-  margin: 0;
-}
-
-.bc-w {
-  background-color: #ffffff;
-}
-
-.m-a {
-  margin: auto;
-}
-
-.w-100p {
-  width: 100%;
-}
-
-.w-250 {
-  width: 250px;
-}
-
-.p-0 {
-  padding: 0;
-}
-
-.p-25 {
-  padding: 25px
-}
-
-.pos-a {
-  position: absolute;
-}
-
-.b-0 {
-  bottom: 0;
-}
-
-.t-0 {
-  top: 0px;
-}
-
-.l-0 {
-  left: 0px;
-}
-
-.c-w {
-  color: white;
-}
-
 .login-bg {
   position: absolute;
   height: 100%;
@@ -143,6 +95,94 @@ body {
 .login-logo-container img {
   height: auto;
   width: 100%;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.bc-w {
+  background-color: #ffffff;
+}
+
+.bc-g {
+  background-color: #c5c5c5;
+}
+
+.bc-db {
+  background-color: #005DA6;
+}
+
+.m-a {
+  margin: auto;
+}
+
+.w-100p {
+  width: 100%;
+}
+
+.w-250 {
+  width: 250px;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.p-25 {
+  padding: 25px
+}
+
+.pos-a {
+  position: absolute;
+}
+
+.pos-r {
+  position: relative;
+}
+
+.b-0 {
+  bottom: 0;
+}
+
+.t-0 {
+  top: 0px;
+}
+
+.l-0 {
+  left: 0px;
+}
+
+.f-l {
+  float: left;
+}
+
+.f-r {
+  float: right;
+}
+
+.c-w {
+  color: #ffffff;
+}
+
+.d-ib {
+  display: inline-block;
+}
+
+.ws-nw {
+  white-space: nowrap;
+}
+
+.o-h {
+  overflow: hidden;
+}
+
+.lh-60 {
+  line-height: 60px;
+}
+
+.fs-20 {
+  font-size: 20px;
 }
 
 .choose-header {

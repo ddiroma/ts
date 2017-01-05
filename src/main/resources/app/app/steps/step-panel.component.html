@@ -1,8 +1,21 @@
-<div class="p-25">
-  <input (keyup)="search($event)" class="w-250 form-control" placeholder="Search"/>
+<div id="search-panel" class="pos-a b-0 w-100p">
+  <div class="pos-a" style="top:-45px;left:10px">
+    <input (keyup)="search($event)" class="w-250 form-control" placeholder="Search"/>
+  </div>
+  <div class="ws-nw o-h">
+    <div *ngFor="let category of categories" (click)="selectCategory(category)" class="p-25 bc-g d-ib">
+      {{category.name}}
+      <div style="clear:both"></div>
+    </div>
+    <div *ngFor="let step of steps" class="p-25 c-w d-ib" [style.background-color]="step.color" (click)="selectStep(step)">
+      {{step.label}}
+      <div style="clear:both"></div>
+    </div>
+  </div>
 </div>
-<div *ngFor="let step of steps" class="step" [style.background-color]="step.color" (click)="select(step)">
-  <img src="{{step.icon}}"/>
-  <div class="label">{{step.label}}</div>
-  <div style="clear:both"></div>
+<div *ngIf="selectedCategory" class="pos-a bc-w w-100p p-25 t-0 l-0" style="height:100%">
+  <div *ngFor="let step of selectedCategory.steps" class="p-25 c-w d-ib" [style.background-color]="step.color" (click)="selectStep(step)">
+    {{step.label}}
+    <div style="clear:both"></div>
+  </div>
 </div>

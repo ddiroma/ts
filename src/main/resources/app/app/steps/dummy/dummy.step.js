@@ -6,6 +6,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var step_1 = require('../step/step');
 var dummy_model_1 = require('./dummy.model');
+var category_model_1 = require("../category.model");
 var DummyStep = (function (_super) {
     __extends(DummyStep, _super);
     function DummyStep(category, dummyModel) {
@@ -16,7 +17,7 @@ var DummyStep = (function (_super) {
         this.color = "#337AB7";
     }
     DummyStep.prototype.get = function () {
-        return new DummyStep(this.category, new dummy_model_1.DummyModel());
+        return new DummyStep(new category_model_1.Category(""), new dummy_model_1.DummyModel());
     };
     return DummyStep;
 }(step_1.Step));

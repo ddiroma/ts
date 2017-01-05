@@ -12,9 +12,9 @@ export class Transformation {
   dirty: Boolean = true;
 
   addStep(step: Step) {
-    step.model.gui.xloc = this.x;
-    step.model.gui.yloc = this.y;
-    this.x = this.x += 150;
+    step.setX(this.x);
+    step.setY(this.y);
+    this.x = this.x += 250;
     this.steps.push(step);
     this.updateHops();
     this.dirty = true;

@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row bc-db c-w lh-60">
+    <div class="col-md-8 fs-20">
+      {{transformation.model.info.name}}
+    </div>
+    <div class="col-md-4" style="text-align:right">
+      <button (click)="run()" class="btn btn-primary" [disabled]="transformation.dirty">Run</button>
+      <button (click)="generate()" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <step-canvas [transformation]="transformation" [currentStep]="currentStep" (onEdit)="onEdit($event)"></step-canvas>
+      <div style="margin-top:10px">
+        <table class="table">
+          <tr>
+            <th *ngFor="let fieldName of result.fieldNames">{{fieldName}}</th>
+          </tr>
+          <tr *ngFor="let row of result.data">
+            <td *ngFor="let field of row">{{field}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<step-panel (onSelect)="onSelect($event)"></step-panel>
+<step-dialog *ngIf="transformation.editing" [currentStep]="currentStep" [transformation]="transformation" (onUpdate)="onUpdate($event)"></step-dialog>

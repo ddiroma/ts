@@ -13,6 +13,7 @@ var step_1 = require('./step/step');
 var transformation_1 = require('../transformation/transformation');
 var StepDialogComponent = (function () {
     function StepDialogComponent() {
+        this.onUpdate = new core_1.EventEmitter();
     }
     StepDialogComponent.prototype.isVisible = function (stepType) {
         if (this.currentStep == null || this.transformation.editing == false) {
@@ -23,6 +24,9 @@ var StepDialogComponent = (function () {
         }
         return false;
     };
+    StepDialogComponent.prototype.handleUpdate = function (step) {
+        this.onUpdate.emit(step);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', step_1.Step)
@@ -31,6 +35,10 @@ var StepDialogComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', transformation_1.Transformation)
     ], StepDialogComponent.prototype, "transformation", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], StepDialogComponent.prototype, "onUpdate", void 0);
     StepDialogComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

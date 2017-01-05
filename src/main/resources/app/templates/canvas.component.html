@@ -1,35 +1,9 @@
-<div class="container-fluid">
-  <div class="row" style="padding: 10px 0px;background-color:#f7f7f7">
-    <div class="col-md-8">
-      <h3 class="p-0 m-0">{{transformation.model.info.name}}</h3>
-    </div>
-    <div class="col-md-4">
-      <button (click)="run()" class="btn btn-primary" [disabled]="transformation.dirty">Run</button>
-      <button (click)="generate()" class="btn btn-primary">Save</button>
-    </div>
-  </div>
-  <div class="row" style="padding-top:20px;">
-    <div class="col-md-12">
-      <div *ngFor="let step of transformation.steps" class="step-small" [style.background-color]="step.color" (click)="edit(step)">
-        <img src="{{step.icon}}"/>
-        <div class="label">{{step.model.name}}</div>
-        <div class="delete" (click)="delete(step)"><img src="/app/delete.svg"/></div>
-      </div>
-      <div style="clear:both"></div>
-      <div style="margin-top:10px">
-        <table class="table">
-          <tr>
-            <th *ngFor="let fieldName of result.fieldNames">{{fieldName}}</th>
-          </tr>
-          <tr *ngFor="let row of result.data">
-            <td *ngFor="let field of row">{{field}}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
+<canvas #canvas style="top:0px;left:0px;position:absolute" width="1024" height="768"></canvas>
+<div id="step-canvas">
+  <div *ngFor="let step of transformation.steps" class="step-small pos-a" style="width:150px;padding:10px" [style.background-color]="step.color" [style.top.px]="step.y" [style.left.px]="step.x" (click)="edit(step)">
+    <!--<img src="{{step.icon}}"/>-->
+    <div style="width:120px;text-overflow: ellipsis;overflow:hidden;white-space: nowrap" class="c-w f-l">{{step.model.name}}</div>
+    <div class="delete" (click)="delete(step)" class="f-r c-w">X</div>
   </div>
 </div>
-<div class="pos-a b-0 w-100p">
-  <step-panel (onSelect)="onSelect($event)"></step-panel>
-</div>
-<step-dialog *ngIf="transformation.editing" [currentStep]="currentStep" [transformation]="transformation"></step-dialog>
+<div style="clear:both"></div>

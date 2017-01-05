@@ -12,6 +12,6 @@ export class DataGridStep extends Step {
   }
 
   get(): DataGridStep {
-    return new DataGridStep(this.category, new DataGridModel());
+    return new DataGridStep(new Category(""), new DataGridModel());
   }
 }

@@ -1,5 +1,5 @@
-<div id="dialogs" class="pos-a bc-w w-100p p-25 t-0 l-0">
-  <csv-input *ngIf="isVisible('CsvInput')" [step]="currentStep" [transformation]="transformation"></csv-input>
-  <data-grid *ngIf="isVisible('DataGrid')" [step]="currentStep" [transformation]="transformation"></data-grid>
-  <dummy *ngIf="isVisible('Dummy')" [step]="currentStep" [transformation]="transformation"></dummy>
+<div id="dialogs" class="pos-a bc-w w-100p p-25 t-0 l-0" style="height:100%">
+  <csv-input *ngIf="isVisible('CsvInput')" [step]="currentStep" [transformation]="transformation" (onUpdate)="handleUpdate($event)"></csv-input>
+  <data-grid *ngIf="isVisible('DataGrid')" [step]="currentStep" [transformation]="transformation" (onUpdate)="handleUpdate($event)"></data-grid>
+  <dummy *ngIf="isVisible('Dummy')" [step]="currentStep" [transformation]="transformation" (onUpdate)="handleUpdate($event)"></dummy>
 </div>

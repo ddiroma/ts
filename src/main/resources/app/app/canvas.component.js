@@ -8,57 +8,71 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var transformation_1 = require('./transformation/transformation');
-var xml_executor_1 = require('./writer/xml-executor');
-var transformation_service_1 = require('./transformation/transformation.service');
-var data_service_1 = require("./data.service");
+var core_1 = require("@angular/core");
+var transformation_1 = require("./transformation/transformation");
+var step_1 = require("./steps/step/step");
 var CanvasComponent = (function () {
-    function CanvasComponent(transformationService, dataService) {
-        this.transformationService = transformationService;
-        this.dataService = dataService;
-        this.result = new transformation_service_1.Result();
-        this.currentStep = null;
-        this.transformation = new transformation_1.Transformation();
-        this.transformation.model.info.name = "My Transformation";
-        this.transformation.path = '/home/bmorrise/Documents/test.ktr';
+    function CanvasComponent() {
+        this.onEdit = new core_1.EventEmitter();
     }
-    CanvasComponent.prototype.onSelect = function (step) {
-        this.currentStep = step.get();
-        this.transformation.editing = true;
+    CanvasComponent.prototype.ngAfterViewInit = function () {
+        this.canvas = this.canvasRef.nativeElement;
+        this.ctx = this.canvas.getContext("2d");
+    };
+    CanvasComponent.prototype.update = function () {
+        var c = this.ctx;
+        c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        for (var i = 1; i < this.transformation.steps.length; i++) {
+            var prevStep = this.transformation.steps[i - 1];
+            var currStep = this.transformation.steps[i];
+            c.beginPath();
+            c.moveTo(prevStep.x + 130, prevStep.y + 22);
+            c.lineTo(currStep.x, currStep.y + 22);
+            c.stroke();
+            c.beginPath();
+            c.moveTo(currStep.x, currStep.y + 22);
+            c.lineTo(currStep.x - 10, currStep.y + 17);
+            c.lineTo(currStep.x - 10, currStep.y + 27);
+            c.lineTo(currStep.x, currStep.y + 22);
+            c.fill();
+        }
     };
     CanvasComponent.prototype.edit = function (step) {
-        this.dataService.currentStep = step;
         this.currentStep = step;
         this.transformation.editing = true;
+        this.onEdit.emit(step);
     };
     CanvasComponent.prototype.delete = function (step) {
         if (step == this.currentStep) {
             this.transformation.editing = false;
         }
         this.transformation.removeStep(step);
+        this.transformation.x -= 250;
+        this.update();
     };
-    CanvasComponent.prototype.generate = function () {
-        var xmlExecutor = new xml_executor_1.XmlExecutor();
-        this.transformation.populateModel();
-        console.log(this.transformation.steps);
-        var text = xmlExecutor.execute(this.transformation.model);
-        console.log(text);
-        // this.transformationService.save(this.transformation.path, text).then(result => console.log(result));
-        // this.transformation.dirty = false;
-    };
-    CanvasComponent.prototype.run = function () {
-        var _this = this;
-        var stepName = this.transformation.steps[this.transformation.steps.length - 1].model.name;
-        this.transformationService.run(this.transformation.path, stepName).then(function (result) { return _this.result = result; });
-    };
+    __decorate([
+        core_1.Input("transformation"), 
+        __metadata('design:type', transformation_1.Transformation)
+    ], CanvasComponent.prototype, "transformation", void 0);
+    __decorate([
+        core_1.Input("currentStep"), 
+        __metadata('design:type', step_1.Step)
+    ], CanvasComponent.prototype, "currentStep", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], CanvasComponent.prototype, "onEdit", void 0);
+    __decorate([
+        core_1.ViewChild('canvas'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], CanvasComponent.prototype, "canvasRef", void 0);
     CanvasComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            templateUrl: '/templates/canvas.component.html',
-            providers: [transformation_service_1.TransformationService, data_service_1.DataService]
+            selector: 'step-canvas',
+            templateUrl: '/templates/canvas.component.html'
         }), 
-        __metadata('design:paramtypes', [transformation_service_1.TransformationService, data_service_1.DataService])
+        __metadata('design:paramtypes', [])
     ], CanvasComponent);
     return CanvasComponent;
 }());

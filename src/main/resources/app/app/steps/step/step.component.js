@@ -13,13 +13,14 @@ var step_1 = require('./step');
 var transformation_1 = require('../../transformation/transformation');
 var StepComponent = (function () {
     function StepComponent() {
+        this.onUpdate = new core_1.EventEmitter();
     }
     StepComponent.prototype.cancel = function () {
         this.transformation.editing = false;
     };
-    StepComponent.prototype.add = function () {
-        this.transformation.addStep(this.step);
+    StepComponent.prototype.ok = function () {
         this.transformation.editing = false;
+        this.onUpdate.emit(this.step);
     };
     __decorate([
         core_1.Input(), 
@@ -29,6 +30,10 @@ var StepComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', step_1.Step)
     ], StepComponent.prototype, "step", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], StepComponent.prototype, "onUpdate", void 0);
     return StepComponent;
 }());
 exports.StepComponent = StepComponent;

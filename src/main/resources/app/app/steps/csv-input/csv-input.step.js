@@ -6,6 +6,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var step_1 = require('../step/step');
 var csv_input_model_1 = require('./csv-input.model');
+var category_model_1 = require("../category.model");
 var CsvInputStep = (function (_super) {
     __extends(CsvInputStep, _super);
     function CsvInputStep(category, csvInputModel) {
@@ -15,7 +16,7 @@ var CsvInputStep = (function (_super) {
         this.color = "#337AB7";
     }
     CsvInputStep.prototype.get = function () {
-        return new CsvInputStep(this.category, new csv_input_model_1.CsvInputModel());
+        return new CsvInputStep(new category_model_1.Category(""), new csv_input_model_1.CsvInputModel());
     };
     return CsvInputStep;
 }(step_1.Step));

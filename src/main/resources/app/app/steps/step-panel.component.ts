@@ -17,6 +17,11 @@ export class StepPanelComponent {
   categoriesList: Array<Category> = [];
   stepsList: Array<Step> = [];
   steps: Array<Step> = [];
+  categories: Array<Category> = [];
+  showSteps: Boolean = false;
+  showCategories: Boolean = true;
+
+  selectedCategory: Category;
 
   dummyStep: DummyStep;
   dataGridStep: DataGridStep;
@@ -24,38 +29,104 @@ export class StepPanelComponent {
 
   constructor() {
     let input: Category = new Category("Input");
+    let output: Category = new Category("Output");
+    let transform: Category = new Category("Transformation");
+    let utility: Category = new Category("Utility");
     let flow: Category = new Category("Flow");
+    let scripting: Category = new Category("Scripting");
+    let pentahoServer: Category = new Category("Pentaho Server");
+    let lookup: Category = new Category("Lookup");
+    let joins: Category = new Category("Joins");
+    let dataWarehouse: Category = new Category("Data Warehouse");
+    let validation: Category = new Category("Validation");
+    let statistics: Category = new Category("Statistics");
+    let dataMining: Category = new Category("Data Mining");
+    let bigData: Category = new Category("Big Data");
+    let agile: Category = new Category("Agile");
+    let cryptography: Category = new Category("Cryptography");
+    let palo: Category = new Category("Palo");
+    let openErp: Category = new Category("Open ERP");
+    let job: Category = new Category("Job");
+    let mapping: Category = new Category("Mapping");
+    let bulkLoading: Category = new Category("Bulk Loading");
+    let inline: Category = new Category("Inline");
+    let experimental: Category = new Category("Experimental");
+    let deprecated: Category = new Category("Deprecated");
+    let history: Category = new Category("History");
+
+    this.categoriesList.push(input);
+    this.categoriesList.push(output);
+    this.categoriesList.push(transform);
+    this.categoriesList.push(utility);
+    this.categoriesList.push(flow);
+    this.categoriesList.push(scripting);
+    this.categoriesList.push(pentahoServer);
+    this.categoriesList.push(lookup);
+    this.categoriesList.push(joins);
+    this.categoriesList.push(dataWarehouse);
+    this.categoriesList.push(validation);
+    this.categoriesList.push(statistics);
+    this.categoriesList.push(dataMining);
+    this.categoriesList.push(bigData);
+    this.categoriesList.push(agile);
+    this.categoriesList.push(cryptography);
+    this.categoriesList.push(palo);
+    this.categoriesList.push(openErp);
+    this.categoriesList.push(job);
+    this.categoriesList.push(mapping);
+    this.categoriesList.push(bulkLoading);
+    this.categoriesList.push(inline);
+    this.categoriesList.push(experimental);
+    this.categoriesList.push(deprecated);
+    this.categoriesList.push(history);
 
     this.dummyStep = new DummyStep(flow, null);
     this.dataGridStep = new DataGridStep(input, null);
     this.csvInputStep = new CsvInputStep(input, null);
 
-    this.categoriesList.push(input);
-    this.categoriesList.push()
-
     this.stepsList.push( this.csvInputStep );
     this.stepsList.push( this.dataGridStep );
     this.stepsList.push( this.dummyStep );
+
     this.reset();
   }
 
   reset() {
-    for (let step of this.stepsList) {
-      this.steps.push( step );
+    this.steps = [];
+    for (let category of this.categoriesList) {
+      this.categories.push( category );
     }
   }
 
-  select(step: Step) {
+  selectCategory(category: Category) {
+    this.showSteps = true;
+    this.showCategories = false;
+    this.steps = category.steps;
+    this.selectedCategory = category;
+  }
+
+  selectStep(step: Step) {
     this.onSelect.emit(step);
   }
 
   search(event: any) {
     let param: String = event.target.value;
-    console.log(param);
+    if (param == "") {
+      this.reset();
+    }
+    this.categories = [];
+    for (let category of this.categoriesList) {
+      if (category.name.toLowerCase().indexOf(param.toLowerCase()) != -1) {
+        this.categories.push(category);
+      }
+    }
     this.steps = [];
     for (let step of this.stepsList) {
       if (step.label.toLowerCase().indexOf(param.toLowerCase()) != -1) {
         this.steps.push(step);
+        if (this.categories.indexOf(step.category) == -1) {
+          this.categories.push(step.category);
+        }
       }
     }
   }

@@ -12,6 +12,6 @@ export class CsvInputStep extends Step {
   }
 
   get(): CsvInputStep {
-    return new CsvInputStep(this.category, new CsvInputModel());
+    return new CsvInputStep(new Category(""), new CsvInputModel());
   }
 }
